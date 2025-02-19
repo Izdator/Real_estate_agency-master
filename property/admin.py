@@ -30,15 +30,9 @@ class ComplaintAdmin(admin.ModelAdmin):
 
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone_number', 'get_owner_pure_phone')
-
-    def get_owner_pure_phone(self, obj):
-        return obj.get_owner_pure_phone()
-
-    get_owner_pure_phone.short_description = 'Нормализованный номер владельца'
+    list_display = ('name', 'phone_number')
 
 
 admin.site.register(Flat, FlatAdmin)
 admin.site.register(Complaint, ComplaintAdmin)
 admin.site.register(Owner, OwnerAdmin)
-                    

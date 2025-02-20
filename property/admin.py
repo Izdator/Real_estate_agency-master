@@ -5,7 +5,7 @@ from .models import Flat, Complaint, Owner
 class OwnerInline(admin.TabularInline):
     model = Flat.owners.through
     extra = 1
-    raw_id_fields = ('flat',)
+    raw_id_fields = ('owner',)
 
 
 @admin.register(Flat)
@@ -35,4 +35,3 @@ class ComplaintAdmin(admin.ModelAdmin):
 @admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone_number')
-    inlines = [OwnerInline]

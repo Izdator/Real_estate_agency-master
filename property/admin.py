@@ -36,4 +36,3 @@ class ComplaintAdmin(admin.ModelAdmin):
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone_number')
     inlines = [OwnerInline]
-    

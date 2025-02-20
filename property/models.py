@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200, db_index=True)
     phone_number = PhoneNumberField('Номер владельца', blank=True, null=True, db_index=True)
@@ -10,6 +11,7 @@ class Owner(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Flat(models.Model):
     owners = models.ManyToManyField(Owner, related_name='owned_flats', verbose_name='Владельцы', blank=True)
@@ -30,6 +32,7 @@ class Flat(models.Model):
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
+
 
 class Complaint(models.Model):
     user = models.ForeignKey(User, related_name='complaints', on_delete=models.CASCADE, verbose_name='Кто жаловался')

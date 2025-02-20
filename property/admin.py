@@ -1,11 +1,14 @@
 from django.contrib import admin
 from .models import Flat, Complaint, Owner
 
+
 class OwnerInline(admin.TabularInline):
     model = Flat.owners.through
     extra = 1
     raw_id_fields = ('flat',)
 
+
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ['town', 'address', 'owners__name']
     readonly_fields = ('created_at',)
@@ -21,15 +24,16 @@ class FlatAdmin(admin.ModelAdmin):
     raw_id_fields = ('liked_by',)
     inlines = [OwnerInline]
 
+
+@admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     list_display = ('user', 'flat', 'created_at')
     raw_id_fields = ('flat',)
-    list_filter = ('flat', 'user')  # Добавлено для фильтрации по новым related_name
+    list_filter = ('flat', 'user')
 
+
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone_number')
-    inlines = [OwnerInline]  # Если хотите отображать квартиры владельца
-
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Complaint, ComplaintAdmin)
-admin.site.register(Owner, OwnerAdmin)
+    inlines = [OwnerInline]
+    

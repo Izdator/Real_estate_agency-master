@@ -7,7 +7,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200, db_index=True)
     phone_number = PhoneNumberField('Номер владельца', blank=True, null=True, db_index=True)
-    flats = models.ManyToManyField('Flat', related_name='owners_set', verbose_name='Квартиры', blank=True)
 
     def __str__(self):
         return self.name
@@ -24,7 +23,7 @@ class Flat(models.Model):
     floor = models.CharField('Этаж', max_length=3, help_text='Первый этаж, последний этаж, пятый этаж')
     rooms_number = models.IntegerField('Количество комнат', db_index=True)
     living_area = models.IntegerField('Жилая площадь', null=True, blank=True, db_index=True)
-    has_balcony = models.BooleanField('Наличие балкона', default=False, db_index=True)  # Установлено значение по умолчанию
+    has_balcony = models.BooleanField('Наличие балкона', default=False, db_index=True)
     active = models.BooleanField('Активно', db_index=True)
     construction_year = models.IntegerField('Год постройки', null=True, blank=True, db_index=True)
     new_building = models.BooleanField('Новостройка', null=True, blank=True, db_index=True)

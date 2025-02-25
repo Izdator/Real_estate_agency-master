@@ -13,7 +13,7 @@ class Owner(models.Model):
 
 
 class Flat(models.Model):
-    owners = models.ManyToManyField(Owner, related_name='owned_flats', verbose_name='Владельцы', blank=True)
+    owners = models.ManyToManyField(Owner, related_name='flats', verbose_name='Владельцы', blank=True)
     created_at = models.DateTimeField('Когда создано объявление', default=timezone.now, db_index=True)
     description = models.TextField('Текст объявления', blank=True)
     price = models.IntegerField('Цена квартиры', db_index=True)

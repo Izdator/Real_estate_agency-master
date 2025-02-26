@@ -36,7 +36,7 @@ class Flat(models.Model):
 class Complaint(models.Model):
     user = models.ForeignKey(User, related_name='complaints', on_delete=models.CASCADE, verbose_name='Кто жаловался')
     flat = models.ForeignKey(Flat, related_name='complaints', on_delete=models.CASCADE, verbose_name='Квартира')
-    complaint_text = models.TextField(verbose_name='Текст жалобы')
+    text = models.TextField(verbose_name='Текст жалобы')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
